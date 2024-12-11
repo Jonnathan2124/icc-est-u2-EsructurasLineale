@@ -25,4 +25,8 @@ public class Contact< T, U > {
         this.phone = phone;
     }
     
+    @Override
+    public String toString() {
+        return "Nombre: " + name + ", Teléfono: " + phone;
+    }
 }

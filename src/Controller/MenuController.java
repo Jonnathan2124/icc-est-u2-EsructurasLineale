@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.List;
+
 import Models.Contact;
 import View.ConsoleView;
 
@@ -14,7 +16,7 @@ public class MenuController {
 
     public void showMenu(){
         boolean exit = false;
-        while (exit) {
+        while (!exit) {
             consoleView.displayMenu();
             String option  = consoleView.getInput("");
             switch (option) {
@@ -56,18 +58,26 @@ public class MenuController {
     }
 
     private void printList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printList'");
+        consoleView.showMessage("Lista");
+
+        contactManager.printList();
+        consoleView.showMessage("=========");
     }
 
     private void findContact() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findContact'");
+        String name = consoleView.getInput("Enter a name to search");
+        Contact<?, ?>contact=contactManager.findContactByName(name);
+        if(contact != null){
+            consoleView.showMessage("Contact found: " + contact);
+        }else{
+            consoleView.showMessage("Contact not found 404");
+        }
     }
 
     private void deleteContact() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteContact'");
+        String name = consoleView.getInput("Enter a name to search");
+        contactManager.deleteContactByName(name);
+        consoleView.showMessage("Contact delete");
     }
 
 
